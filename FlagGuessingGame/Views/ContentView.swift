@@ -16,7 +16,8 @@ struct ContentView: View {
     @State private var selectedFlag: Flag? = nil
     
     @State private var currentOutcome: Outcome = .undetermined
-    
+     
+    @State var history: [Result] = []
 
     
     var body: some View {
@@ -38,12 +39,21 @@ struct ContentView: View {
                     }
                 }
                 Button{
+                    history.insert(Result(flagName: currentflag, flagImage: currentflag, outcome: currentOutcome), at: 0)
                     generateOptions()
                     
                 }label: {
                     Text("New flag")
                 }
             }
+        List(history) { currentresult in
+            HStack{
+                Text(currentresult.flagImage.image)
+                Text(currentresult.flagName.name)
+                Text(currentresult.outcome.rawValue)
+            }
+            
+        }
             .onAppear(perform: generateOptions)
     }
     func generateOptions(){
