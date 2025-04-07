@@ -17,7 +17,9 @@ struct ContentView: View {
     
     @State private var currentOutcome: Outcome = .undetermined
      
-    @State var history: [Result] = []
+    @State private var history: [Result] = []
+    
+    @State private var searchText = ""
 
     
     var body: some View {
@@ -46,7 +48,9 @@ struct ContentView: View {
                     Text("New flag")
                 }
             }
-        List(history) { currentresult in
+        TextField("Enter a country", text: $searchText)
+            .padding()
+        List(filtering(originalList: history, newsearchText: searchText)) { currentresult in
             HStack{
                 Text(currentresult.flagImage.image)
                 Text(currentresult.flagName.name)
