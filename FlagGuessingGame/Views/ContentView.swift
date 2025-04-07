@@ -17,9 +17,7 @@ struct ContentView: View {
     
     @State private var currentOutcome: Outcome = .undetermined
     
-   
-    
-  
+
     
     var body: some View {
         
@@ -41,6 +39,7 @@ struct ContentView: View {
                 }
                 Button{
                     generateOptions()
+                    
                 }label: {
                     Text("New flag")
                 }
@@ -74,14 +73,15 @@ struct ContentView: View {
     }
     
     func checkWin(){
-        if let selected = selectedFlag {
-            print(selected.name == currentflag.name)
+         let selected = selectedFlag
+        if selected!.name ==  currentflag.name{
             currentOutcome = .correct
-        } else{
+        }else{
             currentOutcome = .incorrect
         }
         }
     }
+    
 
 
 #Preview {
