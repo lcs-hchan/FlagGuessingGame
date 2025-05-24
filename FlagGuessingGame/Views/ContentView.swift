@@ -29,7 +29,7 @@ struct ContentView: View {
                 Text(currentflag.image)
                     .font(.system(size: 50))
                 HStack{
-                    ForEach(option, id: \..name){ flag in
+                    ForEach(option){ flag in
                         Button(flag.name){
                             selectedFlag = flag
                             checkWin()
@@ -54,12 +54,15 @@ struct ContentView: View {
             HStack{
                 Text(currentresult.flagImage.image)
                 Text(currentresult.flagName.name)
+                Spacer()
                 Text(currentresult.outcome.rawValue)
             }
             
         }
             .onAppear(perform: generateOptions)
     }
+    
+    // This generate option code was written with the assistance of chatGPT
     func generateOptions(){
         
         var newFlag: Flag
@@ -73,22 +76,21 @@ struct ContentView: View {
         // Ensures that within all the options, there is one that is correct and there will be no repeats
         var tempOptions: Set<Flag> = [currentflag]
         // Loop until there are four options
+        
         while tempOptions.count < 4{
             // when a random flag is found in the all flags array in random
-            if let newFlag = allflags.randomElement(){
+            if let randomOptions = allflags.randomElement(){
                 // insert the flag in the tempOptions array
-                tempOptions.insert(newFlag)
+                tempOptions.insert(randomOptions)
             }
         }
         // shuffle the array from all the options
         option = Array(tempOptions).shuffled()
-        
         currentOutcome = .undetermined
     }
     
     func checkWin(){
-         let selected = selectedFlag
-        if selected!.name ==  currentflag.name{
+        if selectedFlag?.name ==  currentflag.name{
             currentOutcome = .correct
         }else{
             currentOutcome = .incorrect

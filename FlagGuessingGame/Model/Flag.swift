@@ -24,5 +24,11 @@ let allflags = [
     Flag(name: "india", image: "🇮🇳"),
     Flag(name: "italy", image: "🇮🇹"),
     Flag(name: "mexico", image: "🇲🇽"),
+    Flag(name: "australia", image: "🇦🇺"),
+    Flag(name: "russia", image: "🇷🇺"),
+    Flag(name: "iceland", image: "🇮🇸"),
+    Flag(name: "poland", image: "🇵🇱"),
+    Flag(name: "belgium", image: "🇧🇪"),
+    Flag(name: "cuba", image: "🇨🇺")
     
 ]
